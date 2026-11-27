@@ -1,0 +1,6 @@
+# FALLBACK only: used when the prompt question in 1 add effects.bat is answered
+# with Enter AND Ollama cannot be reached (foley_config.txt OLLAMA=/MODEL=).
+# Normally a local vision model writes one sentence per window from the video
+# itself, so this one line is used for the whole video.
+# Effects and ambience only: no music, no voices.
+Close-up of hands slowly moving and spreading fingers in a quiet interior room, soft cloth rustle, faint skin movement, distant room tone

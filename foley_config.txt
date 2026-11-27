@@ -1,0 +1,40 @@
+# Settings for 1 add effects.bat / foley_batch.py
+# KEY=VALUE, one per line. # starts a comment.
+#
+# The terminal asks two things only: the video, and the sound. Press Enter at
+# the sound question and foley_director.py writes one prompt per window from
+# two frames of the video, using the Ollama MODEL below.
+
+# The ComfyUI install that actually serves port 8188. Several portable copies
+# live on this box; the clip has to be written into THIS one's input folder.
+COMFY=D:\1 DELL\1 Techs\ComfyUI_portable_UPDATED\ComfyUI
+SERVER=http://127.0.0.1:8188
+
+# Seconds per render window. The sampler cannot do more than 30 s, so a whole
+# video is rendered window by window. 10-15 s is the safe range on 24 GB.
+# One prompt is written per window, so a smaller window follows the picture
+# more closely (but means more prompts to write and more renders).
+WINDOW=15
+
+# Sampler settings, straight from Hunyuanfoley.json.
+STEPS=50
+CFG=4.5
+
+# What must NOT be in the result. cfg 4.5 means this is really applied.
+NEGATIVE=music, soundtrack, piano, instruments, singing, voices, speech, humming
+
+# ---- writing the prompts (Ollama) ----
+# The model must report "vision" in `ollama show <model>` - it looks at two
+# frames per window. qwen3.8:27b-Q3 is ~14 GB, ~15-40 s per group of windows.
+OLLAMA=http://127.0.0.1:11434
+MODEL=qwen3.8:27b-Q3
+# The sound direction handed to that model for every window.
+STYLE=physical foley for an educational lesson: constant room ambience under every second, clear cloth/skin/tap sounds, and a loud accent on the big visual beat - no music, no voices
+
+# ---- the final mix ----
+# 1 = keep the existing narration/audio and put the effects under it at
+# FOLEY_DB. 0 = effects only (the original track is dropped, old behaviour).
+MIX=1
+FOLEY_DB=-6
+# LUFS the effects track is normalised to before mixing. 0 = leave it alone.
+LOUDNESS=-16
